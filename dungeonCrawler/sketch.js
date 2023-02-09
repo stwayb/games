@@ -118,9 +118,9 @@ function tilingSetup(){
   }
 }
 
-function tiling(){
-  for(let x=-10;x<10;x++){
-    for(let y=-10;y<10;y++){
+function tiling(left,right,up,down){
+  for(let x=left+4;x<right+5;x++){
+    for(let y=up+4;y<down+5;y++){
       z=tiles[tilesCount];
       
       y2=(64*y)+yPos;
@@ -154,8 +154,6 @@ function tiling(){
 function walk() {
   timerCount++;
   if(timerCount<=8){
-    print(input);
-    print(timerCount)
     if(input==1){
       xPos+=8;
     }
@@ -250,7 +248,10 @@ function draw() {
   if(walkF<64){
     walkF++;
   }
-  tiling();
+  background(0);
+  tiling(-1,1,-1,1);
+  tiling(2,2,-0,0);
+  tiling(3,12,-3,3);
   noStroke();
   fill(61, 204, 53);
   rect(0, 576, 576, 64);
@@ -261,6 +262,10 @@ function draw() {
   fill(0);
   rect(18,588,124,36);
   rect(14,592,132,28);
+  if(frame%120==0){
+    print(x2);
+    print(y2);
+  }
 
   if(walkF<64){
     recharge++;
